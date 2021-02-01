@@ -1,14 +1,14 @@
-FROM alpine:latest
+FROM alpine:3.12.3
 
 VOLUME  ["/sys/fs/cgroup"]
 
 RUN apk add openrc
 RUN apk add mariadb mariadb-common mariadb-client
+RUN rc-update add mariadb default
 RUN rc-status && touch /run/openrc/softlevel
-RUN /etc/init.d/mariadb setup
-RUN rc-update add mariadb default && openrc default
 
-COPY ./srcs/query.sql ./query.sql
-COPY ./srcs/script.sh ./script.sh
+ADD ./srcs/script.sh ./script.sh
+
+EXPOSE 3306
 
 CMD sh script.sh

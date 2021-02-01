@@ -31,7 +31,7 @@ spec:
         selector:
             app: wordpress
         ports:
-            - name: http
+            - name: wordpress
               port: 5050
               protocol: TCP
               targetPort: 5050

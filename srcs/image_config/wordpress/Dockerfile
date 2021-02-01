@@ -17,6 +17,7 @@ RUN tar -xzvf latest.tar.gz && rm latest.tar.gz
 RUN mv wordpress /www
 RUN chown -R 777 /www/wordpress
 
+COPY ./srcs/wp-config.php /www/wordpress/wp-config.php
 COPY ./srcs/script.sh /script.sh
 RUN chmod +x /script.sh
 
