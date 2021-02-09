@@ -1,7 +1,13 @@
-FROM alpine:latest
+FROM alpine:3.12.3
 
 RUN apk update && apk add openrc && apk add vsftpd
+RUN rc-status && touch /run/openrc/softlevel 
 RUN rc-update add vsftpd default
+
+RUN echo "http://nl.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories
+RUN apk add telegraf
+RUN mkdir /etc/telegraf
+ADD ./srcs/telegraf.conf /etc/telegraf/telegraf.conf
 
 COPY ./srcs/vsftpd.conf /etc/vsftpd/vsftpd.conf
 

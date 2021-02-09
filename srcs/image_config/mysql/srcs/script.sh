@@ -1,9 +1,5 @@
-# rc-service mariadb start
-# mysql -u root < /query.sql
-# while true;
-# do
-#     sleep 2
-# done
+echo "Strating Telegraf ... "
+telegraf &
 
 if [ ! -f "/var/lib/mysql/ib_buffer_pool" ]; then
     echo "-------Install-------"
@@ -21,7 +17,21 @@ fi
 sed -i "s/skip-networking/# skip-networking/g" /etc/my.cnf.d/mariadb-server.cnf
 rc-service mariadb start
 
+sleep 2
+
 while true;
 do
-    sleep 2
+        var_mariadb=`service mariadb status | grep -c 'stopped'`
+        if [ $var_mariadb -eq 1 ]
+        then
+                echo "mariadb service stopped!"
+                exit 1
+        fi
+        if ! pgrep telegraf; then
+		echo "telegraf is not running !"
+		exit 1
+        fi
+        sleep 2
 done
+
+exit 0

@@ -31,8 +31,8 @@ $cfg['Servers'][$i]['auth_type'] = 'cookie';
 $cfg['Servers'][$i]['host'] = 'mysql';
 $cfg['Servers'][$i]['compress'] = false;
 $cfg['Servers'][$i]['AllowNoPassword'] = false;
-$cfg['PmaNoRelation_DisableWarning'] = TRUE;
-$cfg['PmaAbsoluteUri'] = '/';
+// $cfg['PmaNoRelation_DisableWarning'] = TRUE;
+// $cfg['PmaAbsoluteUri'] = '/';
 /**
  * phpMyAdmin configuration storage settings.
  */
