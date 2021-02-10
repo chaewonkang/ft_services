@@ -11,15 +11,11 @@ sleep 2
 
 while true;
 do
-        var_nginx=`service nginx status | grep -c 'stopped'`
-        var_sshd=`service sshd status | grep -c 'stopped'`        
-        if [ $var_nginx -eq 1 ]
-        then
-                echo "nginx service stopped"
+        if ! pgrep nginx; then
+                echo "nginx is not running !"
                 exit 1
         fi
-        if [ $var_sshd -eq 1 ]
-        then
+        if ! pgrep sshd; then
                 echo "sshd service stopped"
                 exit 1
         fi

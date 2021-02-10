@@ -1,7 +1,5 @@
 FROM alpine:3.12.3
 
-VOLUME  ["/sys/fs/cgroup"]
-
 RUN apk add openrc
 RUN apk add mariadb mariadb-common mariadb-client
 RUN rc-update add mariadb default
@@ -13,6 +11,7 @@ RUN mkdir /etc/telegraf
 ADD ./srcs/telegraf.conf /etc/telegraf/telegraf.conf
 
 ADD ./srcs/script.sh ./script.sh
+ADD ./srcs/wordpress.sql ./wordpress.sql
 
 EXPOSE 3306
 

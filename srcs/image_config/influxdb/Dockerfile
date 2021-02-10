@@ -1,7 +1,5 @@
 FROM alpine:3.12.3
 
-VOLUME  ["/sys/fs/cgroup"]
-
 RUN apk update && apk add openrc
 RUN rc-status && touch /run/openrc/softlevel 
 

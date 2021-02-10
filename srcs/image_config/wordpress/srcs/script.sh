@@ -11,16 +11,12 @@ sleep 2
 
 while true;
 do
-        var_nginx=`service nginx status | grep -c 'stopped'`
-        var_php=`service php-fpm7 status | grep -c 'stopped'`
-        if [ $var_nginx -eq 1 ]
-        then
-                echo "nginx service stopped"
+        if ! pgrep nginx; then
+                echo "nginx is not running !"
                 exit 1
         fi
-        if [ $var_php -eq 1 ]
-        then
-                echo "php-fpm7 service stopped"
+        if ! pgrep php-fpm7; then
+                echo "php-fpm7 is not running !"
                 exit 1
         fi
         if ! pgrep telegraf; then

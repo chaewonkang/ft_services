@@ -1,7 +1,5 @@
 FROM alpine:3.12.3
 
-VOLUME  ["/sys/fs/cgroup"]
-
 RUN apk update && apk add nginx curl openrc
 RUN rc-status && touch /run/openrc/softlevel 
 RUN rc-update add nginx default
