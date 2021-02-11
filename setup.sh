@@ -1,3 +1,9 @@
+#Start minikube
+minikube start --driver=virtualbox
+
+#To point your shell to minikube's docker-daemon, run:
+eval $(minikube docker-env)
+#
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.5/manifests/namespace.yaml
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.5/manifests/metallb.yaml
 # On first install only
